@@ -39,7 +39,7 @@ public extension UIView {
       - delay: delay before the animation starts, in seconds
       - completion: block executed when the animation ends
    */
-  @discardableResult func fadeIn(duration: TimeInterval = 0.25,
+  @discardableResult func fadeIn(_ duration: TimeInterval = 0.25,
                                  delay: TimeInterval = 0,
                                  completion: ((Bool) -> Void)? = nil) -> UIView {
     isHidden = false
@@ -62,7 +62,7 @@ public extension UIView {
      - delay: delay before the animation starts, in seconds
      - completion: block executed when the animation ends
    */
-  @discardableResult func fadeOut(duration: TimeInterval = 0.25,
+  @discardableResult func fadeOut(_ duration: TimeInterval = 0.25,
                                   delay: TimeInterval = 0,
                                   completion: ((Bool) -> Void)? = nil) -> UIView {
     UIView.animate(
@@ -89,7 +89,7 @@ public extension UIView {
                                   duration: TimeInterval = 0.4,
                                   delay: TimeInterval = 0,
                                   completion: ((Bool) -> Void)? = nil) -> UIView {
-    let offset = offsetFor(edge: edge)
+    let offset = offsetFor(edge)
     transform = CGAffineTransform(translationX: offset.x + x, y: offset.y + y)
     isHidden = false
     UIView.animate(
@@ -118,7 +118,7 @@ public extension UIView {
                                    duration: TimeInterval = 0.25,
                                    delay: TimeInterval = 0,
                                    completion: ((Bool) -> Void)? = nil) -> UIView {
-    let offset = offsetFor(edge: edge)
+    let offset = offsetFor(edge)
     let endTransform = CGAffineTransform(translationX: offset.x + x, y: offset.y + y)
     UIView.animate(
       withDuration: duration, delay: delay, options: .curveEaseOut, animations: {
@@ -144,7 +144,7 @@ public extension UIView {
                                    duration: TimeInterval = 0.5,
                                    delay: TimeInterval = 0,
                                    completion: ((Bool) -> Void)? = nil) -> UIView {
-    let offset = offsetFor(edge: edge)
+    let offset = offsetFor(edge)
     transform = CGAffineTransform(translationX: offset.x + x, y: offset.y + y)
     isHidden = false
     UIView.animate(
@@ -173,7 +173,7 @@ public extension UIView {
                                     duration: TimeInterval = 0.35,
                                     delay: TimeInterval = 0,
                                     completion: ((Bool) -> Void)? = nil) -> UIView {
-    let offset = offsetFor(edge: edge)
+    let offset = offsetFor(edge)
     let delta = CGPoint(x: offset.x + x, y: offset.y + y)
     let endTransform = CGAffineTransform(translationX: delta.x, y: delta.y)
     let prepareTransform = CGAffineTransform(translationX: -delta.x * 0.2, y: -delta.y * 0.2)
@@ -200,7 +200,7 @@ public extension UIView {
      - delay: delay before the animation starts, in seconds
      - completion: block executed when the animation ends
    */
-  @discardableResult func popIn(fromScale: CGFloat = 0.5,
+  @discardableResult func popIn(_ fromScale: CGFloat = 0.5,
                                 duration: TimeInterval = 0.5,
                                 delay: TimeInterval = 0,
                                 completion: ((Bool) -> Void)? = nil) -> UIView {
@@ -224,7 +224,7 @@ public extension UIView {
      - delay: delay before the animation starts, in seconds
      - completion: block executed when the animation ends
    */
-  @discardableResult func popOut(toScale: CGFloat = 0.5,
+  @discardableResult func popOut(_ toScale: CGFloat = 0.5,
                                  duration: TimeInterval = 0.3,
                                  delay: TimeInterval = 0,
                                  completion: ((Bool) -> Void)? = nil) -> UIView {
@@ -338,7 +338,7 @@ public extension UIView {
     return self
   }
 
-  private func offsetFor(edge: SimpleAnimationEdge) -> CGPoint {
+  fileprivate func offsetFor(_ edge: SimpleAnimationEdge) -> CGPoint {
     if let parentSize = self.superview?.frame.size {
       switch edge {
       case .none: return CGPoint.zero
